@@ -1,0 +1,3 @@
+[submodule "bib_to_ark"]
+  path = bib_to_ark
+  url = https://gitlab.library.upenn.edu/katherly/bib_to_ark
