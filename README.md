@@ -116,6 +116,8 @@ Example:
 ```bash
 $ # left-to-right
 $ ruby ruby/hathi_ocr.rb examples/list -b
+$ 
+$ # right-to-left
 $ ruby ruby/hathi_ocr.rb examples/list right-to-left -b
 ```
 
