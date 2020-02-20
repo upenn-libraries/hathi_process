@@ -68,7 +68,7 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
       
       This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
       
-5. Upload the XML to the FTP server.
+5. Upload the XML to the Zephir FTP server (credentials acquired from CDL through SCETI/Kislak Center).
  
 6. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed. 
 

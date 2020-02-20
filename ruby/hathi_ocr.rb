@@ -152,7 +152,7 @@ else
   lines.each do |line|
     boilerplate_non_ocr_text = 'Image text could not be captured.'
     directory, bib_id = fetch_and_transform(line)
-    
+
     FileUtils.mkdir_p(destination) unless File.exist?(destination)
     FileUtils.mkdir_p(directory) unless File.exist?(directory)
 
