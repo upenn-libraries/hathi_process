@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>00911cam a2200301 a 4500</marc:leader>
+    <marc:controlfield tag="001">9911154383503681</marc:controlfield>
+    <marc:controlfield tag="005">20180816184151.0</marc:controlfield>
+    <marc:controlfield tag="008">900101s1905    pauab         000 0 eng d</marc:controlfield>
+    <marc:datafield ind1=" " ind2=" " tag="010">
+  <marc:subfield code="a">   05032423 </marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(OCoLC)ocm17459584</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(OCoLC)17459584</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">OHLG35140304-B</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(CLSI)006230788</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="9">AHN6050</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(CStRLIN)mrc02534637</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">1115438</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(PU)1115438-penndb-Voyager</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="040">
+  <marc:subfield code="a">MH</marc:subfield>
+  <marc:subfield code="c">MH</marc:subfield>
+  <marc:subfield code="d">PAU</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="0" ind2="0" tag="050">
+  <marc:subfield code="a">G126</marc:subfield>
+  <marc:subfield code="b">.C82</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2=" " tag="100">
+  <marc:subfield code="a">Cornman, Oliver P.</marc:subfield>
+  <marc:subfield code="q">(Oliver Perry),</marc:subfield>
+  <marc:subfield code="d">1836-1930.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2="0" tag="245">
+  <marc:subfield code="a">Geography primer /</marc:subfield>
+  <marc:subfield code="c">by Oliver P. Cornman and Oscar Gerson.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="260">
+  <marc:subfield code="a">Philadelphia ;</marc:subfield>
+  <marc:subfield code="a">New York :</marc:subfield>
+  <marc:subfield code="b">Hinds, Noble &amp; Eldredge,</marc:subfield>
+  <marc:subfield code="c">c1905.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="300">
+  <marc:subfield code="a">xxii, 138 p. :</marc:subfield>
+  <marc:subfield code="b">ill., maps ;</marc:subfield>
+  <marc:subfield code="c">20 cm.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2="0" tag="650">
+  <marc:subfield code="a">Geography.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2=" " tag="700">
+  <marc:subfield code="a">Gerson, Oscar,</marc:subfield>
+  <marc:subfield code="d">1874-</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="8" ind2=" " tag="852">
+  <marc:subfield code="b">vanp</marc:subfield>
+  <marc:subfield code="h">910 C8141.4</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="965">
+  <marc:subfield code="b">ark:/81431/p3pp4m</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="999">
+  <marc:subfield code="a">f</marc:subfield>
+  <marc:subfield code="b">2000/12/02</marc:subfield>
+</marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>01139cam a2200325i 44500</marc:leader>
+    <marc:controlfield tag="001">999560953503681</marc:controlfield>
+    <marc:controlfield tag="005">20181106080116.0</marc:controlfield>
+    <marc:controlfield tag="008">881026s1907    pauac         00110 eng d</marc:controlfield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(OCoLC)ocm21933587</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(OCoLC)21933587</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(CStRLIN)PAUG88-B42189</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(CaOTULAS)159512010</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="9">AET6859</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">956095</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(PU)956095-penndb-Voyager</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="040">
+  <marc:subfield code="a">PU</marc:subfield>
+  <marc:subfield code="c">PU</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="043">
+  <marc:subfield code="a">e-uk---</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="090">
+  <marc:subfield code="a">BF1475</marc:subfield>
+  <marc:subfield code="b">.H2 1907</marc:subfield>
+  <marc:subfield code="i">10/26/88 CT</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2=" " tag="100">
+  <marc:subfield code="a">Harper, Charles George,</marc:subfield>
+  <marc:subfield code="d">1863-</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2="0" tag="245">
+  <marc:subfield code="a">Haunted houses;</marc:subfield>
+  <marc:subfield code="b">tales of the supernatural, with some account of hereditary curses and family legends,</marc:subfield>
+  <marc:subfield code="c">by Charles G. Harper.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="0" ind2=" " tag="260">
+  <marc:subfield code="a">Philadelphia,</marc:subfield>
+  <marc:subfield code="b">J. B. Lippincott company</marc:subfield>
+  <marc:subfield code="c">[1907]</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="300">
+  <marc:subfield code="a">288 p.</marc:subfield>
+  <marc:subfield code="b">illus., ports. ;</marc:subfield>
+  <marc:subfield code="c">23 cm.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2="0" tag="650">
+  <marc:subfield code="a">Ghosts</marc:subfield>
+  <marc:subfield code="z">Great Britain.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2="0" tag="650">
+  <marc:subfield code="a">Supernatural</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2="4" tag="650">
+  <marc:subfield code="a">PRO Skilling, Joseph K. (donor)</marc:subfield>
+  <marc:subfield code="5">PU</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="4" ind2="1" tag="856">
+  <marc:subfield code="a">z Facsimile</marc:subfield>
+  <marc:subfield code="u">http://hdl.library.upenn.edu/1017/d/print/956095</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="950">
+  <marc:subfield code="l">VPL</marc:subfield>
+  <marc:subfield code="i">10/26/88 C</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="955">
+  <marc:subfield code="l">VPL</marc:subfield>
+  <marc:subfield code="c">1</marc:subfield>
+  <marc:subfield code="q">g. Skilling</marc:subfield>
+  <marc:subfield code="r">[00238 0603]</marc:subfield>
+  <marc:subfield code="s">Recl.fr. 133.1/H238</marc:subfield>
+  <marc:subfield code="i">10/26/88 C</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="965">
+  <marc:subfield code="b">ark:/81431/p3bc7j</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="999">
+  <marc:subfield code="a">DLA</marc:subfield>
+  <marc:subfield code="b">20170509</marc:subfield>
+</marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>01068cam a2200301 a 4500</marc:leader>
+    <marc:controlfield tag="001">999734573503681</marc:controlfield>
+    <marc:controlfield tag="005">20180816182710.0</marc:controlfield>
+    <marc:controlfield tag="008">890223s1889    pauc    r     00010 eng d</marc:controlfield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(OCoLC)ocm21917432</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(OCoLC)21917432</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(CStRLIN)PAUG89-B6895</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(CaOTULAS)159529169</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="9">AFP1966</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">973457</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="035">
+  <marc:subfield code="a">(PU)973457-penndb-Voyager</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="040">
+  <marc:subfield code="a">PU</marc:subfield>
+  <marc:subfield code="c">PU</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="090">
+  <marc:subfield code="a">BJ1681</marc:subfield>
+  <marc:subfield code="b">.A77 1889a</marc:subfield>
+  <marc:subfield code="i">02/23/89 CTZ</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2=" " tag="100">
+  <marc:subfield code="a">Arthur, T. S.</marc:subfield>
+  <marc:subfield code="q">(Timothy Shay),</marc:subfield>
+  <marc:subfield code="d">1809-1885.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2="0" tag="240">
+  <marc:subfield code="a">Advice to young ladies on their duties and conduct in life.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="1" ind2="0" tag="245">
+  <marc:subfield code="a">Arthur's Advice to young ladies on their duties and conduct in life /</marc:subfield>
+  <marc:subfield code="c">by T.S. Arthur.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1="0" ind2=" " tag="260">
+  <marc:subfield code="a">Philadelphia :</marc:subfield>
+  <marc:subfield code="b">Keystone Pub. Co.,</marc:subfield>
+  <marc:subfield code="c">1889.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="300">
+  <marc:subfield code="a">248 p., [1] leaf of plates :</marc:subfield>
+  <marc:subfield code="b">port. ;</marc:subfield>
+  <marc:subfield code="c">20 cm.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="533">
+  <marc:subfield code="a">Photocopy.</marc:subfield>
+  <marc:subfield code="b">Philadelphia :</marc:subfield>
+  <marc:subfield code="c">University of Pennsylvania,</marc:subfield>
+  <marc:subfield code="d">1989.</marc:subfield>
+  <marc:subfield code="e">28 cm.</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2="0" tag="650">
+  <marc:subfield code="a">Young women</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2="0" tag="650">
+  <marc:subfield code="a">Conduct of life</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="950">
+  <marc:subfield code="l">VPL</marc:subfield>
+  <marc:subfield code="i">02/23/89 C</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="955">
+  <marc:subfield code="l">VPL</marc:subfield>
+  <marc:subfield code="c">1</marc:subfield>
+  <marc:subfield code="q">g.I.L.L.</marc:subfield>
+  <marc:subfield code="r">[01002 2015]</marc:subfield>
+  <marc:subfield code="i">02/23/89 C</marc:subfield>
+</marc:datafield>
+    <marc:datafield ind1=" " ind2=" " tag="965">
+  <marc:subfield code="b">ark:/81431/p36p48</marc:subfield>
+</marc:datafield>
+  </marc:record>
+</marc:collection>

@@ -1,0 +1,25 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ezid-client (1.8.0)
+      hashie (~> 3.4, >= 3.4.3)
+      nokogiri
+    hashie (3.6.0)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.8)
+      mini_portile2 (~> 2.4.0)
+    rubyXL (3.4.12)
+      nokogiri (>= 1.4.4)
+      rubyzip (>= 1.3.0)
+    rubyzip (1.3.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ezid-client
+  nokogiri
+  rubyXL
+
+BUNDLED WITH
+   1.17.3

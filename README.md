@@ -1,74 +1,135 @@
-# Hathi Process Documentation
+# README for `hathi_process`
 
-This is a documentation repository intended to describe workflows facilitated by linked repos referenced herein.  Code is not maintained in this repository.
+Documentation and scripts to orchestrate HathiTrust content package generator and delivery.
 
-## Phase 1: ARK ID Generation
+## Setup
 
-After selecting and validating that books are viable candidates to be sent through this process, this phase is the next thing that must be done before any catalogging work in service of final content package generation can happen. 
+1. Install Tesseract for OCR.
+    * [Tesseract install guide](https://guides.library.illinois.edu/c.php?g=347520&p=4121425)
 
-### Requirements
-* Bib IDs of books to be sent to Hath
-
-### Steps
-1. Catalogging Team will open a ticket with LTS requesting ARK IDs be minted for books based on the bib IDs they have added to the Hathi scanned books spreadsheet on Box (shared with other staff on this project). 
-
-2. Once the ticket is received, log into [EZID](https://ezid.cdlib.org/) and mint ARK IDs, one per book, adhering to the following values for the ERC schema:
-    * Who: University of Pennsylvania Libraries
-    * What: [TITLE IN CATALOG RECORD]
-    * When: [PUBLICATION DATE IN CATALOG RECORD]
-    * Where: Can be left blank for now.
+2. Install Ruby dependencies:
     
-    Note: values associated with an ARK ID can be updated at any time.  Credentials to log into and use this service are currently owned and managed by LTS.
+    ```bash
+    $ bundle install
+    ```
+
+3. Source environment variables for the Alma bibs API key and the EZID account credentials.  
+
+    ### EZID example:
     
-3. Update the "EZID ARK" column in the spreadsheet on Box with the ARKS for each book.  This is a critical stage, as the process on Hathi's end requires a book's metadata and its files to be processed by two separate systems that rely exclusively on the ARK ID being the same to create correct content packages.
+    ```bash
+    $ export ezid_p='export EZID_DEFAULT_SHOULDER='$SHOULDER';
+    $ export EZID_USER='$USERNAME';
+    $ export EZID_PASSWORD='$PASSWORD';'
+    ```
+    
+    Where `$SHOULDER`, `$USERNAME`, and `$PASSWORD` are the EZID account values for production.
+    
+    ### Alma example: 
+    
+    ```bash
+    $ export ALMA_KEY=$KEY_VALUE
+    ```
+    
+    Where `$KEY_VALUE` is the Alma bibs API key you want to use.
+    
 
-4. Update the support ticket and alert staff that this is complete.
+## Content package generation and delivery process
 
-## Phase 2: Generate manifests for image conversion
+1. Mint ark IDs and update their ERC profiles with information from a spreadsheet from metadata processing team [ruby/ezid_spreadsheet.rb](ruby/ezid_spreadsheet.rb) with [examples/sample_ezid_sheet.xlsx](examples/sample_ezid.xlsx).  Spot-check the script's success at an EZID URL from the resulting spreadsheet - [example from EZID](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
 
-As noted above, the relationship between bib IDs and their associated ARK IDs is important to keep correct for Hathi.  For this reason, a simple script is used to generate manifest YAML files used in phase 3 to create appropriately-named directories and create JP2 versions of TIFF images in the right locations, used as sources for the final content packages.
+2. Send sheet back to metadata team to update catalog records.
 
-### Requirements
-* Spreadsheet with bib IDs and associated ARK IDs for each book
-* Folders (one per book) with sequentially-named TIFF images of each cover/page image
-* A manifest to run the bib_to_ark script (see [example](examples/bib_to_ark_manifest.example))
+3. ??? How get bibs? (these need to be on the original spreadsheet).
 
-### Steps
+4. TODO: creating packages 
 
-1. From within the bib_to_ark root directory, run the script like so:
-```
-ruby bib_to_ark.rb $MANIFEST
-```
-Where ```$MANIFEST``` is the absolute path to the manifest file you wish to use.
-
-2. There should now be YAML files named for the ARK IDs of each book referenced in the manifest in the directory from which you ran the script. Optionally copy them into the image_format_converter root directory for ease of command-line operations.
-
-## Phase 3: Generating JP2s
-
-The script in question [image_format_converter](image_format_converter) fulfills one purpose -- converting images in one location of one source format into another format at another location.  As such, the process described below is somewhat manual, however this could be automated or improved with supplementary bash scripts, etc.
-
-### Requirements
-* Folders (one per book) with sequentially-named TIFF images of each cover/page image
-* A machine with access to ```sceti-completed```
-
-### Steps
-1. For each manifest file generated in phase 2, run the following command using the image conversion script:
-```
-ruby converter.rb $ARK_MANIFEST
-```
-Where ```$ARK_MANIFEST``` is the absolutely path to the object's ark manifest YAML file.
-
-2. Observe through onscreen logging as images are processed by the script.  This script will warn the user if Hathi-compliany sequential image number appears to be off, specifically if pages seem to be missing based on the filenames present.  The user must give approval in order to proceed.
-
-3. Once all images have been converted, proceed to content package generation.
+5. Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
+      
+    Example email terminal output:
+      ```bash      
+      Send to: cdl-zphr-l@ucop.edu
+      Subject: Zephir metadata file submitted
+      
+      file name=PU-2_20200220_file1.xml
+      file size=9754
+      record count=2
+      notification email=katherly@upenn.edu
+      ```
+      
+      This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
+      
+6. Upload the XML to the FTP server.
  
-## Phase 4: Generating content packages
-
- TODO
+7. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed. 
  
-## Phase 5: Generating metadata record
- 
- TODO
-## Phase 6: Uploading to Hathi
+8. 
 
- TODO
+## Examples of `hathi_ocr`
+
+To see options available with `hathi_ocr` script:
+
+```bash
+$ ruby ruby/hathi_ocr.rb -h
+$ ruby ruby/hathi_ocr.rb --help
+```
+
+Output:
+
+```bash
+Usage: hathi_ocr.rb [options]
+    -b, --[no-]ocr                   Do not generate OCR (use boilerplate text)
+    -m, --metadata-only              Fetch MARC XML only
+```
+
+### Reading directions
+
+To specify left-to-right reading direction, do not specify a second argument to the `hathi_ocr` script.  
+
+Example:
+
+```bash
+$ ruby ruby/hathi_ocr.rb examples/list
+```
+
+To specify a different reading order, add a second argument.  
+
+Example for `right-to-left`:
+
+```bash
+$ ruby ruby/hathi_ocr.rb examples/list right-to-left 
+```
+
+### Boilerplate OCR (-b)
+
+In the event that ***all*** page images are not of appropriate quality or content for OCR, boilerplate OCR should be generated.  
+
+Example:
+
+```bash
+$ # left-to-right
+$ ruby ruby/hathi_ocr.rb examples/list -b
+$ ruby ruby/hathi_ocr.rb examples/list right-to-left -b
+```
+
+### Metadata-only (-m)
+
+NOTE: to successfully generate metadata, make sure a read-only Alm bib data API key has been sourced to your environment by running the following in your terminal:
+
+```bash
+$ export ALMA_KEY=$KEY_VALUE
+```
+
+Where `$KEY_VALUE` is the Alma API key you want to use.
+
+To generate the metadata XML file and email terminal output for steps 5 through 7, add the`-m` flag.  
+
+This ***will not*** generate the ZIP content packages, only the metadata XML file and email terminal output.
+
+Example:
+
+```bash
+$ ruby ruby/hathi_ocr.rb examples/list -m
+```
+
+The XML will be saved to a folder called `metadata` at the path specified in the `destination` row of the manifest.

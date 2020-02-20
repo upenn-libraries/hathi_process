@@ -3,10 +3,8 @@
 require 'rubyXL'
 require 'ezid-client'
 
-require 'pry'
-
 def missing_args?
-  return (ARGV[0].nil?)
+  return (ARGV[0].nil?) || (ARGV[1].nil?)
 end
 
 def set_headers(worksheet, headers_hash)
@@ -63,18 +61,20 @@ Ezid::Client.configure do |conf|
   conf.password = 'apitest' unless ENV['EZID_PASSWORD']
 end
 
-HEADERS = { :call_number => 'FolderName',
+HEADERS = { :call_number => 'MMS_ID',
                       :ark_id => 'ARK',
                       :erc_who => 'Who',
                       :erc_what => 'What',
                       :erc_when => 'When'
 }
 
-spreadsheet_name = 'arks.xlsx'
+abort('!!!!!!!!!! SEE ERROR BELOW !!!!!!!!!!
+Specify a path to an Excel spreadsheet to read from and the path to write the new file to (MUST BE DIFFERENT FROM SOURCE EXCEL FILE)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!') if missing_args?
+
+spreadsheet_name = ARGV[1].to_s.end_with?('.xlsx') ? ARGV[1].to_s : "#{ARGV[1]}.xlsx"
 
 source_workbook = ARGV[0]
-
-abort('Specify a path to an Excel spreadsheet') if missing_args?
 
 abort("#{source_workbook} not found") unless File.exist?(source_workbook)
 
