@@ -37,14 +37,23 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 ## Content package generation and delivery process
 
 1. Mint ark IDs and update their ERC profiles with information from a spreadsheet from metadata processing team [ruby/ezid_spreadsheet.rb](ruby/ezid_spreadsheet.rb) with [examples/sample_ezid_sheet.xlsx](examples/sample_ezid.xlsx).  Spot-check the script's success at an EZID URL from the resulting spreadsheet - [example from EZID](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
-
+    NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who`, `What`, and `When` values.  
+    
+    All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
+    
+    Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
+    
 2. Send sheet back to metadata team to update catalog records.
 
-3. ??? How get bibs? (these need to be on the original spreadsheet).
+3. Use the `hathi_ocr` Ruby script to generate content packages.
 
-4. TODO: creating packages 
+    Example:
+    
+    ```bash
+    $ ruby ruby/hathi_ocr.rb examples/list.example
+    ```
 
-5. Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
+4. Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
       
     Example email terminal output:
       ```bash      
@@ -59,11 +68,9 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
       
       This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
       
-6. Upload the XML to the FTP server.
+5. Upload the XML to the FTP server.
  
-7. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed. 
- 
-8. 
+6. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed. 
 
 ## Examples of `hathi_ocr`
 
@@ -122,7 +129,7 @@ $ export ALMA_KEY=$KEY_VALUE
 
 Where `$KEY_VALUE` is the Alma API key you want to use.
 
-To generate the metadata XML file and email terminal output for steps 5 through 7, add the`-m` flag.  
+To generate the metadata XML file and email terminal output for steps 4 through 6, add the`-m` flag.  
 
 This ***will not*** generate the ZIP content packages, only the metadata XML file and email terminal output.
 
