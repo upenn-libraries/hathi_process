@@ -18,7 +18,7 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
     ### EZID example:
     
     ```bash
-    $ export ezid_p='export EZID_DEFAULT_SHOULDER='$SHOULDER';
+    $ export EZID_DEFAULT_SHOULDER='$SHOULDER';
     $ export EZID_USER='$USERNAME';
     $ export EZID_PASSWORD='$PASSWORD';'
     ```
