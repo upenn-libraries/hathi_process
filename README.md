@@ -8,7 +8,7 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
     * [Tesseract install guide](https://guides.library.illinois.edu/c.php?g=347520&p=4121425)
 
 2. Install Ruby dependencies:
-    
+
     ```bash
     $ bundle install
     ```
@@ -16,61 +16,94 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 3. Source environment variables for the Alma bibs API key and the EZID account credentials.  
 
     ### EZID example:
-    
+
     ```bash
     $ export EZID_DEFAULT_SHOULDER='$SHOULDER';
     $ export EZID_USER='$USERNAME';
-    $ export EZID_PASSWORD='$PASSWORD';'
+    $ export EZID_PASSWORD='$PASSWORD';
     ```
-    
+
     Where `$SHOULDER`, `$USERNAME`, and `$PASSWORD` are the EZID account values for production.
-    
-    ### Alma example: 
-    
+
+    ### Alma example:
+
     ```bash
     $ export ALMA_KEY=$KEY_VALUE
     ```
-    
+
     Where `$KEY_VALUE` is the Alma bibs API key you want to use.
-    
 
 ## Content package generation and delivery process
 
-1. Mint ark IDs and update their ERC profiles with information from a spreadsheet from metadata processing team [ruby/ezid_spreadsheet.rb](ruby/ezid_spreadsheet.rb) with [examples/sample_ezid_sheet.xlsx](examples/sample_ezid.xlsx).  Spot-check the script's success at an EZID URL from the resulting spreadsheet - [example from EZID](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
-    NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who`, `What`, and `When` values.  
-    
-    All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
-    
-    Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
-    
-2. Send sheet back to metadata team to update catalog records.
+1. Use the [`ezid_spreadsheet`](ruby/ezid_spreadsheet.rb) Ruby script to mint ark IDs and update their ERC profiles with information from a spreadsheet from the metadata processing team [Example](examples/sample_ezid.xlsx).
 
-3. Use the `hathi_ocr` Ruby script to generate content packages.
+  Example:
+  ```bash
+  $ ruby ruby/ezid_spreadsheet.rb examples/sample_ezid.xlsx output.xlsx
+  ```
+  The first argument (`examples/sample_ezid.xlsx` in the example) should be the path and filename for the local copy of the source spreadsheet from the metadata processing team.  The second argument (`output.xlsx` in the example) should be the name of the path and filename of the new spreadsheet you are writing that will contain the ark IDs.
+
+  You should see output something like the following:
+
+  ```bash
+  Writing spreadsheet...
+  I, [2020-03-17T15:30:46.672182 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4sj2td24
+  I, [2020-03-17T15:30:47.023855 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4ns23m0v
+  I, [2020-03-17T15:30:47.369654 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4j11cs5n
+  Spreadsheet written to output.xlsx.
+  ```
+
+  NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who`, `What`, and `When` values.  
+
+  All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
+
+2. Spot-check the script's success by checking some of the EZID arks you'e created against their EZID URL - [example from EZID for ark:/99999/fk4572r527](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
+
+  Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
+
+3. Send the newly populated spreadsheet you have generated back to metadata team to update catalog records.
+
+4. Create a text manifest listing the directories containing the JP2 images to be OCR'd and converted to packages ([example](examples/list.example)) to generate content packages.
+
+  The manifest should be populated as follows:
+
+  ```
+  destination|/absolute/path/to/Hathi_directories
+/absolute/path/to/Hathi_directories/directory_1|bib_id_for_directory_1
+  destination|/absolute/path/to/Hathi_directories
+/absolute/path/to/Hathi_directories/directory_2|bib_id_for_directory_2
+  destination|/absolute/path/to/Hathi_directories
+/absolute/path/to/Hathi_directories/directory_3|bib_id_for_directory_3
+  ```
+
+    Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and the manifest to generate the Hathi content packages:
 
     Example:
-    
+
     ```bash
     $ ruby ruby/hathi_ocr.rb examples/list.example
     ```
 
-4. Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
-      
+    The finished packages will be at the path specified on the first line, after the string `destination|`.
+
+5. Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
+
     Example email terminal output:
       ```bash      
       Send to: cdl-zphr-l@ucop.edu
       Subject: Zephir metadata file submitted
-      
+
       file name=PU-2_20200220_file1.xml
       file size=9754
       record count=2
       notification email=katherly@upenn.edu
       ```
-      
+
       This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
-      
-5. Upload the XML to the Zephir FTP server (credentials acquired from CDL through SCETI/Kislak Center).
- 
-6. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed. 
+
+6. Upload the XML to the Zephir FTP server (credentials acquired from CDL through SCETI/Kislak Center).
+
+7. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed.
 
 ## Examples of `hathi_ocr`
 
@@ -104,7 +137,7 @@ To specify a different reading order, add a second argument.
 Example for `right-to-left`:
 
 ```bash
-$ ruby ruby/hathi_ocr.rb examples/list right-to-left 
+$ ruby ruby/hathi_ocr.rb examples/list right-to-left
 ```
 
 ### Boilerplate OCR (-b)
@@ -116,7 +149,7 @@ Example:
 ```bash
 $ # left-to-right
 $ ruby ruby/hathi_ocr.rb examples/list -b
-$ 
+$
 $ # right-to-left
 $ ruby ruby/hathi_ocr.rb examples/list right-to-left -b
 ```
