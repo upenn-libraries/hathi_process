@@ -39,25 +39,26 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 
 Use the [`ezid_spreadsheet`](ruby/ezid_spreadsheet.rb) Ruby script to mint ark IDs and update their ERC profiles with information from a spreadsheet from the metadata processing team [Example](examples/sample_ezid.xlsx).
 
-  Example:
-  ```bash
-  $ ruby ruby/ezid_spreadsheet.rb examples/sample_ezid.xlsx output.xlsx
-  ```
-  The first argument (`examples/sample_ezid.xlsx` in the example) should be the path and filename for the local copy of the source spreadsheet from the metadata processing team.  The second argument (`output.xlsx` in the example) should be the name of the path and filename of the new spreadsheet you are writing that will contain the ark IDs.
+Example:
+```bash
+$ ruby ruby/ezid_spreadsheet.rb examples/sample_ezid.xlsx output.xlsx
+```
 
-  You should see output something like the following:
+The first argument (`examples/sample_ezid.xlsx` in the example) should be the path and filename for the local copy of the source spreadsheet from the metadata processing team.  The second argument (`output.xlsx` in the example) should be the name of the path and filename of the new spreadsheet you are writing that will contain the ark IDs.
 
-  ```bash
-  Writing spreadsheet...
-  I, [2020-03-17T15:30:46.672182 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4sj2td24
-  I, [2020-03-17T15:30:47.023855 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4ns23m0v
-  I, [2020-03-17T15:30:47.369654 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4j11cs5n
-  Spreadsheet written to output.xlsx.
-  ```
+You should see output something like the following:
 
-  NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who`, `What`, and `When` values.  
+```bash
+Writing spreadsheet...
+I, [2020-03-17T15:30:46.672182 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4sj2td24
+I, [2020-03-17T15:30:47.023855 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4ns23m0v
+I, [2020-03-17T15:30:47.369654 #84514]  INFO -- : EZID MintIdentifier -- success: ark:/99999/fk4j11cs5n
+Spreadsheet written to output.xlsx.
+```
 
-  All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
+NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who`, `What`, and `When` values.  
+
+All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
 
 ---
 
@@ -65,7 +66,7 @@ Use the [`ezid_spreadsheet`](ruby/ezid_spreadsheet.rb) Ruby script to mint ark I
 
 Spot-check the script's success by checking some of the EZID arks you'e created against their EZID URL - [example from EZID for ark:/99999/fk4572r527](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
 
-  Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
+Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
 
 ---
 
@@ -77,28 +78,28 @@ Send the newly populated spreadsheet you have generated back to metadata team to
 
 ### Step 4
 
-4. Create a text manifest listing the directories containing the JP2 images to be OCR'd and converted to packages ([example](examples/list.example)) to generate content packages.
+Create a text manifest listing the directories containing the JP2 images to be OCR'd and converted to packages ([example](examples/list.example)) to generate content packages.
 
-  The manifest should be populated as follows, but with real values:
+The manifest should be populated as follows, but with real values:
 
-  ```
-  destination|/absolute/path/to/Hathi_directories
+```
+destination|/absolute/path/to/Hathi_directories
 /absolute/path/to/Hathi_directories/directory_1|bib_id_for_directory_1
-  destination|/absolute/path/to/Hathi_directories
+destination|/absolute/path/to/Hathi_directories
 /absolute/path/to/Hathi_directories/directory_2|bib_id_for_directory_2
-  destination|/absolute/path/to/Hathi_directories
+destination|/absolute/path/to/Hathi_directories
 /absolute/path/to/Hathi_directories/directory_3|bib_id_for_directory_3
-  ```
+```
 
-    Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and the manifest to generate the Hathi content packages:
+Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and the manifest to generate the Hathi content packages:
 
-    Example:
+Example:
 
-    ```bash
-    $ ruby ruby/hathi_ocr.rb examples/list.example
-    ```
+```bash
+$ ruby ruby/hathi_ocr.rb examples/list.example
+```
 
-    The finished packages will be at the path specified on the first line, after the string `destination|`.
+The finished packages will be at the path specified on the first line, after the string `destination|`.
 
 ---
 
@@ -106,18 +107,19 @@ Send the newly populated spreadsheet you have generated back to metadata team to
 
 Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
 
-    Example email terminal output:
-      ```bash      
-      Send to: cdl-zphr-l@ucop.edu
-      Subject: Zephir metadata file submitted
+Example email terminal output:
 
-      file name=PU-2_20200220_file1.xml
-      file size=9754
-      record count=2
-      notification email=katherly@upenn.edu
-      ```
+```bash      
+Send to: cdl-zphr-l@ucop.edu
+Subject: Zephir metadata file submitted
 
-      This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
+file name=PU-2_20200220_file1.xml
+file size=9754
+record count=2
+notification email=katherly@upenn.edu
+```
+
+This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
 
 ---
 
