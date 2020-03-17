@@ -35,7 +35,9 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 
 ## Content package generation and delivery process
 
-1. Use the [`ezid_spreadsheet`](ruby/ezid_spreadsheet.rb) Ruby script to mint ark IDs and update their ERC profiles with information from a spreadsheet from the metadata processing team [Example](examples/sample_ezid.xlsx).
+### Step 1
+
+Use the [`ezid_spreadsheet`](ruby/ezid_spreadsheet.rb) Ruby script to mint ark IDs and update their ERC profiles with information from a spreadsheet from the metadata processing team [Example](examples/sample_ezid.xlsx).
 
   Example:
   ```bash
@@ -57,15 +59,27 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 
   All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
 
-2. Spot-check the script's success by checking some of the EZID arks you'e created against their EZID URL - [example from EZID for ark:/99999/fk4572r527](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
+---
+
+### Step 2
+
+Spot-check the script's success by checking some of the EZID arks you'e created against their EZID URL - [example from EZID for ark:/99999/fk4572r527](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
 
   Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
 
-3. Send the newly populated spreadsheet you have generated back to metadata team to update catalog records.
+---
+
+### Step 3
+
+Send the newly populated spreadsheet you have generated back to metadata team to update catalog records.
+
+---
+
+### Step 4
 
 4. Create a text manifest listing the directories containing the JP2 images to be OCR'd and converted to packages ([example](examples/list.example)) to generate content packages.
 
-  The manifest should be populated as follows:
+  The manifest should be populated as follows, but with real values:
 
   ```
   destination|/absolute/path/to/Hathi_directories
@@ -86,7 +100,11 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 
     The finished packages will be at the path specified on the first line, after the string `destination|`.
 
-5. Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
+---
+
+### Step 5
+
+Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
 
     Example email terminal output:
       ```bash      
@@ -101,11 +119,21 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 
       This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
 
-6. Upload the XML to the Zephir FTP server (credentials acquired from CDL through SCETI/Kislak Center).
+---
 
-7. Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed.
+### Step 6
 
-## Examples of `hathi_ocr`
+Upload the XML to the Zephir FTP server (credentials acquired from CDL through SCETI/Kislak Center contact for HathiTrust).
+
+---
+
+### Step 7
+
+Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed.
+
+---
+
+## Usage of `hathi_ocr`
 
 To see options available with `hathi_ocr` script:
 
