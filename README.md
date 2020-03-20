@@ -83,13 +83,20 @@ Create a text manifest listing the directories containing the JP2 images to be O
 The manifest should be populated as follows, but with real values:
 
 ```
-destination|/absolute/path/to/Hathi_directories
+location|/absolute/path/to/Hathi_directories_to_process
+destination|/absolute/path/to/Hathi_destination
 /absolute/path/to/Hathi_directories/directory_1|bib_id_for_directory_1
 destination|/absolute/path/to/Hathi_directories
 /absolute/path/to/Hathi_directories/directory_2|bib_id_for_directory_2
 destination|/absolute/path/to/Hathi_directories
 /absolute/path/to/Hathi_directories/directory_3|bib_id_for_directory_3
 ```
+
+Where `location` is the directory where all of the Hathi packages to be processed are, and `destination` is the destination for the completed Hathi zipped-up packages.
+
+---
+
+### Step 5
 
 Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and the manifest to generate the Hathi content packages:
 
@@ -103,7 +110,7 @@ The finished packages will be at the path specified on the first line, after the
 
 ---
 
-### Step 5
+### Step 6
 
 Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
 
@@ -123,13 +130,13 @@ This email ***does not send*** automatically.      Save the email information ou
 
 ---
 
-### Step 6
+### Step 7
 
 Upload the XML to the Zephir FTP server (credentials acquired from CDL through SCETI/Kislak Center contact for HathiTrust).
 
 ---
 
-### Step 7
+### Step 8
 
 Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed.
 
