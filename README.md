@@ -64,7 +64,7 @@ All HathiTrust books handled through this process ***must*** have the default va
 
 ### Step 2
 
-Spot-check the script's success by checking some of the EZID arks you'e created against their EZID URL - [example from EZID for ark:/99999/fk4572r527](https://ezid.cdlib.org/id/ark:/99999/fk4572r527).
+Spot-check the script's success by checking some of the EZID arks you'e created against their EZID URL - [example from EZID for ark:/81431/p37p8tf2t](https://ezid.cdlib.org/id/ark:/81431/p37p8tf2t).
 
 Learn about the [ERC profile terms for EZID in the "Metadata profiles" section here](https://ezid.cdlib.org/doc/apidoc.html).
 
@@ -72,7 +72,11 @@ Learn about the [ERC profile terms for EZID in the "Metadata profiles" section h
 
 ### Step 3
 
-Send the newly populated spreadsheet you have generated back to metadata team to update catalog records.
+Send the newly populated spreadsheet you have generated back to metadata team to update catalog records with the newly-minted ark IDs.
+
+NOTE: Steps 4 and 5 can be completed without the metadata yet being updated from this step.  The metadata XML in step 6 must be generated ***after*** the metadata team has added the ark IDs to the catalog records.
+
+***IMPORTANT:*** The metadata XML with ark IDs can be sent to Hathi Trust before the content packages are uploaded.  The content packages can also be sent to Hathi Trust before the metadata has been uploaded.  The ark ID is the link between the descriptive metadata and the content package, linked by the ark ID in the catalog record and the name of the content package's directory.
 
 ---
 
@@ -112,7 +116,33 @@ The finished packages will be at the path specified on the first line, after the
 
 ### Step 6
 
-Generate metadata XML and email terminal output.  [Example metadata XML](examples/PU-2_20200220_file1.xml).
+Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and manifest to generate metadata XML and email terminal output.  
+
+Example:
+
+```bash
+$ ruby ruby/hathi_ocr.rb -m examples/list.example
+```
+
+You should see output something like the following:
+
+```bash
+Fetching MARC XML for /Users/kate/Documents/Hathi_stuff/Hathi_test/ark+=81431=p3pp4m, saving to /Users/kate/Downloads/Hathi_testing/metadata
+Fetching MARC XML for /Users/kate/Documents/Hathi_stuff/Hathi_test/ark+=81431=p3bc7j, saving to /Users/kate/Downloads/Hathi_testing/metadata
+Fetching MARC XML for /Users/kate/Documents/Hathi_stuff/Hathi_test/ark+=81431=p36p48, saving to /Users/kate/Downloads/Hathi_testing/metadata
+
+
+
+Send to: cdl-zphr-l@ucop.edu
+Subject: Zephir metadata file submitted
+
+file name=PU-2_20200323_file1.xml
+file size=11887
+record count=3
+notification email=katherly@upenn.edu
+```
+
+See [example metadata XML output](examples/PU-2_20200220_file1.xml).
 
 Example email terminal output:
 

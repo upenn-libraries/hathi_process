@@ -106,7 +106,7 @@ def write_marc_xml(write_location, ids)
 end
 
 def generate_marc_email(file_location, file_name, records_count)
-  email_address = 'katherly@upenn.edu'
+  email_address = 'jieli@upenn.edu'
   file_size = File.size(file_location)
 
   send_to = 'Send to: cdl-zphr-l@ucop.edu'
