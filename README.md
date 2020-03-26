@@ -13,7 +13,7 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
     $ bundle install
     ```
 
-3. Source environment variables for the Alma bibs API key and the EZID account credentials.  
+3. When minting true arks for production, source environment variables for the Alma bibs API key and the EZID account credentials.  
 
     ### EZID example:
 
@@ -60,6 +60,10 @@ NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who
 
 All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
 
+***IMPORTANT***: Ark IDs created without production credentials sourced as environment variables (step 3 in `Setup` above) begin with `ark:/99999/fk4` and are intended for practice and testing.  They expire automatically after 14 days.  
+
+Ark IDs for production that will persist over time for Penn Libraries begin with `ark:/81431/p3` and are created only with correct production credentials sourced as environment variables.
+
 ---
 
 ### Step 2
@@ -81,6 +85,8 @@ NOTE: Steps 4 and 5 can be completed without the metadata yet being updated from
 ---
 
 ### Step 4
+
+The metadata spreadsheet will be updated with directories where the JP2 images to be scanned for OCR and included in the content packages are stored locally.  Each content package will be in a directory named for its ark ID created in the spreadsheet in Step 1.  For an example of what this looks like, an example exists as of 03/2020 on local storage at `sceti-completed-2/Temporary_sceti-completed/Hathi/Catalyst`.
 
 Create a text manifest listing the directories containing the JP2 images to be OCR'd and converted to packages ([example](examples/list.example)) to generate content packages.
 
