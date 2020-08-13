@@ -1,2 +1,6 @@
-.idea
 .env
+.idea
+.mounts
+
+downloads
+test_files

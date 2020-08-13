@@ -5,33 +5,34 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 ## Setup
 
 1. Install Tesseract for OCR.
-    * [Tesseract install guide](https://guides.library.illinois.edu/c.php?g=347520&p=4121425)
+
+   - [Tesseract install guide](https://guides.library.illinois.edu/c.php?g=347520&p=4121425)
 
 2. Install Ruby dependencies:
 
-    ```bash
-    $ bundle install
-    ```
+   ```bash
+   $ bundle install
+   ```
 
-3. When minting true arks for production, source environment variables for the Alma bibs API key and the EZID account credentials.  
+3. When minting true arks for production, source environment variables for the Alma bibs API key and the EZID account credentials.
 
-    ### EZID example:
+   ### EZID example:
 
-    ```bash
-    $ export EZID_DEFAULT_SHOULDER='$SHOULDER';
-    $ export EZID_USER='$USERNAME';
-    $ export EZID_PASSWORD='$PASSWORD';
-    ```
+   ```bash
+   $ export EZID_DEFAULT_SHOULDER='$SHOULDER'
+   $ export EZID_USER='$USERNAME'
+   $ export EZID_PASSWORD='$PASSWORD'
+   ```
 
-    Where `$SHOULDER`, `$USERNAME`, and `$PASSWORD` are the EZID account values for production.
+   Where `$SHOULDER`, `$USERNAME`, and `$PASSWORD` are the EZID account values for production.
 
-    ### Alma example:
+   ### Alma example:
 
-    ```bash
-    $ export ALMA_KEY=$KEY_VALUE
-    ```
+   ```bash
+   $ export ALMA_KEY=$KEY_VALUE
+   ```
 
-    Where `$KEY_VALUE` is the Alma bibs API key you want to use.
+   Where `$KEY_VALUE` is the Alma bibs API key you want to use.
 
 ## Content package generation and delivery process
 
@@ -40,11 +41,12 @@ Documentation and scripts to orchestrate HathiTrust content package generator an
 Use the [`ezid_spreadsheet`](ruby/ezid_spreadsheet.rb) Ruby script to mint ark IDs and update their ERC profiles with information from a spreadsheet from the metadata processing team [Example](examples/sample_ezid.xlsx).
 
 Example:
+
 ```bash
 $ ruby ruby/ezid_spreadsheet.rb examples/sample_ezid.xlsx output.xlsx
 ```
 
-The first argument (`examples/sample_ezid.xlsx` in the example) should be the path and filename for the local copy of the source spreadsheet from the metadata processing team.  The second argument (`output.xlsx` in the example) should be the name of the path and filename of the new spreadsheet you are writing that will contain the ark IDs.
+The first argument (`examples/sample_ezid.xlsx` in the example) should be the path and filename for the local copy of the source spreadsheet from the metadata processing team. The second argument (`output.xlsx` in the example) should be the name of the path and filename of the new spreadsheet you are writing that will contain the ark IDs.
 
 You should see output something like the following:
 
@@ -56,11 +58,11 @@ I, [2020-03-17T15:30:47.369654 #84514]  INFO -- : EZID MintIdentifier -- success
 Spreadsheet written to output.xlsx.
 ```
 
-NOTE: The source spreadsheet ***must*** include valid MMS IDs with matching `Who`, `What`, and `When` values.  
+NOTE: The source spreadsheet **_must_** include valid MMS IDs with matching `Who`, `What`, and `When` values.
 
-All HathiTrust books handled through this process ***must*** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
+All HathiTrust books handled through this process **_must_** have the default value `University of Pennsylvania, Van Pelt-Dietrich Library` for `Who`.
 
-***IMPORTANT***: Ark IDs created without production credentials sourced as environment variables (step 3 in `Setup` above) begin with `ark:/99999/fk4` and are intended for practice and testing.  They expire automatically after 14 days.  
+**_IMPORTANT_**: Ark IDs created without production credentials sourced as environment variables (step 3 in `Setup` above) begin with `ark:/99999/fk4` and are intended for practice and testing. They expire automatically after 14 days.
 
 Ark IDs for production that will persist over time for Penn Libraries begin with `ark:/81431/p3` and are created only with correct production credentials sourced as environment variables.
 
@@ -78,15 +80,15 @@ Learn about the [ERC profile terms for EZID in the "Metadata profiles" section h
 
 Send the newly populated spreadsheet you have generated back to metadata team to update catalog records with the newly-minted ark IDs.
 
-NOTE: Steps 4 and 5 can be completed without the metadata yet being updated from this step.  The metadata XML in step 6 must be generated ***after*** the metadata team has added the ark IDs to the catalog records.
+NOTE: Steps 4 and 5 can be completed without the metadata yet being updated from this step. The metadata XML in step 6 must be generated **_after_** the metadata team has added the ark IDs to the catalog records.
 
-***IMPORTANT:*** The metadata XML with ark IDs can be sent to Hathi Trust before the content packages are uploaded.  The content packages can also be sent to Hathi Trust before the metadata has been uploaded.  The ark ID is the link between the descriptive metadata and the content package, linked by the ark ID in the catalog record and the name of the content package's directory.
+**_IMPORTANT:_** The metadata XML with ark IDs can be sent to Hathi Trust before the content packages are uploaded. The content packages can also be sent to Hathi Trust before the metadata has been uploaded. The ark ID is the link between the descriptive metadata and the content package, linked by the ark ID in the catalog record and the name of the content package's directory.
 
 ---
 
 ### Step 4
 
-The metadata spreadsheet will be updated with directories where the JP2 images to be scanned for OCR and included in the content packages are stored locally.  Each content package will be in a directory named for its ark ID created in the spreadsheet in Step 1.  For an example of what this looks like, an example exists as of 03/2020 on local storage at `sceti-completed-2/Temporary_sceti-completed/Hathi/Catalyst`.
+The metadata spreadsheet will be updated with directories where the JP2 images to be scanned for OCR and included in the content packages are stored locally. Each content package will be in a directory named for its ark ID created in the spreadsheet in Step 1. For an example of what this looks like, an example exists as of 03/2020 on local storage at `sceti-completed-2/Temporary_sceti-completed/Hathi/Catalyst`.
 
 Create a text manifest listing the directories containing the JP2 images to be OCR'd and converted to packages ([example](examples/list.example)) to generate content packages.
 
@@ -122,7 +124,7 @@ The finished packages will be at the path specified on the first line, after the
 
 ### Step 6
 
-Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and manifest to generate metadata XML and email terminal output.  
+Use the [`hathi_ocr`](ruby/hathi_ocr.rb) Ruby script and manifest to generate metadata XML and email terminal output.
 
 Example:
 
@@ -137,8 +139,6 @@ Fetching MARC XML for /Users/kate/Documents/Hathi_stuff/Hathi_test/ark+=81431=p3
 Fetching MARC XML for /Users/kate/Documents/Hathi_stuff/Hathi_test/ark+=81431=p3bc7j, saving to /Users/kate/Downloads/Hathi_testing/metadata
 Fetching MARC XML for /Users/kate/Documents/Hathi_stuff/Hathi_test/ark+=81431=p36p48, saving to /Users/kate/Downloads/Hathi_testing/metadata
 
-
-
 Send to: cdl-zphr-l@ucop.edu
 Subject: Zephir metadata file submitted
 
@@ -152,7 +152,7 @@ See [example metadata XML output](examples/PU-2_20200220_file1.xml).
 
 Example email terminal output:
 
-```bash      
+```bash
 Send to: cdl-zphr-l@ucop.edu
 Subject: Zephir metadata file submitted
 
@@ -162,7 +162,7 @@ record count=2
 notification email=katherly@upenn.edu
 ```
 
-This email ***does not send*** automatically.      Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
+This email **_does not send_** automatically. Save the email information outputted to the terminal and upload the metadata XML to the Zephir FTP server.
 
 ---
 
@@ -174,7 +174,7 @@ Upload the XML to the Zephir FTP server (credentials acquired from CDL through S
 
 ### Step 8
 
-Once this is complete, retrieve the email terminal output.  Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email.  You will receive an automated email when the metadata has been processed.
+Once this is complete, retrieve the email terminal output. Copy and past the email address, subject line, and body of the email (change the notification email in the body to the appropriate Penn contact in LTS to be notified), and send the email. You will receive an automated email when the metadata has been processed.
 
 ---
 
@@ -197,7 +197,7 @@ Usage: hathi_ocr.rb [options]
 
 ### Reading directions
 
-To specify left-to-right reading direction, do not specify a second argument to the `hathi_ocr` script.  
+To specify left-to-right reading direction, do not specify a second argument to the `hathi_ocr` script.
 
 Example:
 
@@ -205,7 +205,7 @@ Example:
 $ ruby ruby/hathi_ocr.rb examples/list
 ```
 
-To specify a different reading order, add a second argument.  
+To specify a different reading order, add a second argument.
 
 Example for `right-to-left`:
 
@@ -215,7 +215,7 @@ $ ruby ruby/hathi_ocr.rb examples/list right-to-left
 
 ### Boilerplate OCR (-b)
 
-In the event that ***all*** page images are not of appropriate quality or content for OCR, boilerplate OCR should be generated.  
+In the event that **_all_** page images are not of appropriate quality or content for OCR, boilerplate OCR should be generated.
 
 Example:
 
@@ -237,9 +237,9 @@ $ export ALMA_KEY=$KEY_VALUE
 
 Where `$KEY_VALUE` is the Alma API key you want to use.
 
-To generate the metadata XML file and email terminal output for steps 4 through 6, add the`-m` flag.  
+To generate the metadata XML file and email terminal output for steps 4 through 6, add the`-m` flag.
 
-This ***will not*** generate the ZIP content packages, only the metadata XML file and email terminal output.
+This **_will not_** generate the ZIP content packages, only the metadata XML file and email terminal output.
 
 Example:
 
@@ -248,3 +248,42 @@ $ ruby ruby/hathi_ocr.rb examples/list -m
 ```
 
 The XML will be saved to a folder called `metadata` at the path specified in the `destination` row of the manifest.
+
+## Running with Docker
+
+This project can be run with docker in one of two ways: by building the image and running the container manually or by running the convenience script `hathi_ocr.sh` to build and run the project for you.
+
+### Using the script
+
+To use the convenience script, run the following command:
+
+```
+./hathi_ocr.sh -f examples/list.example
+```
+
+The `-f` flag is used for supplying the location of the file you want to run with the script
+
+If you need to mount volumes into your container you can add them to a file titled `.mounts` (one mount on each line) and the script will automatically add them. For example:
+
+```
+/mnt/first-mount
+/mnt/second-mount
+/mnt/third-mount
+```
+
+### Manually Building and Running
+
+To build manually run the following command from the project's root directory:
+
+```
+docker build -t hathi_process .
+```
+
+Once the image is built you can then run a container to process the files:
+
+```
+docker run -it --rm \
+    -v ./your_input_file:/usr/src/app/your_input_file" \
+    -v ./destination:/usr/src/app/destination" \
+    hathi_process ruby ruby/hathi_ocr.rb your_input_file
+```
